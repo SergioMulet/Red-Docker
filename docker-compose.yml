@@ -6,8 +6,6 @@ services:
       - ./web:/usr/share/nginx/html:ro
     networks:
       - red_interna
-    ports:
-      - "80:80"
 
   dns:
     image: internetsystemsconsortium/bind9:9.18
