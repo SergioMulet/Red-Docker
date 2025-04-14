@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  web:
+    image: nginx:latest
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    networks:
+      - red_interna
+    ports:
+      - "80:80"
+
+  dns:
+    image: internetsystemsconsortium/bind9:9.18
+    volumes:
+      - ./dns:/etc/bind
+    networks:
+      - red_interna
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ADMSIS123
+      MYSQL_DATABASE: uniovi-ASR
+      MYSQL_USER: UO296503_UO295368
+      MYSQL_PASSWORD: ADMSIS123
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - red_interna
+
+  cliente:
+    build: ./cliente
+    networks:
+      - red_interna
+    tty: true
+
+networks:
+  red_interna:
+    driver: bridge
+
+volumes:
+  db_data:

@@ -1,0 +1,12 @@
+$TTL 604800
+@       IN      SOA     interna.local. root.interna.local. (
+                             2         ; Serial
+                        604800         ; Refresh
+                         86400         ; Retry
+                       2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@       IN      NS      dns.interna.local.
+web     IN      A       172.19.0.2
+cliente IN      A       172.19.0.4
+db      IN      A       172.19.0.3
