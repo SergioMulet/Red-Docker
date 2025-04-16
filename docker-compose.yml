@@ -14,8 +14,8 @@ services:
     networks:
       - red_interna
     ports:
-      - "53:53/udp"
-      - "53:53/tcp"
+      - "1053:53/udp"
+      - "1053:53/tcp"
 
   db:
     image: mysql:5.7
@@ -30,6 +30,12 @@ services:
       - red_interna
 
   cliente:
+    build: ./cliente
+    networks:
+      - red_interna
+    tty: true
+
+  otro_cliente:
     build: ./cliente
     networks:
       - red_interna
